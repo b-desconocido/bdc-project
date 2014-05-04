@@ -1,12 +1,11 @@
 BlackDragonCoin integration/staging tree
 ========================================
+http://blackdragoncoin.com  
+http://forum.blackdragoncoin.com   
 
-http://blackdragoncoin.com
-http://forum.blackdragoncoin.com
-
-Copyright (c) 2009-2013 Bitcoin Developers
-Copyright (c) 2011-2013 Litecoin Developers
-Copyright (c) 2014 BlackDragonCoin Developers
+Copyright (c) 2009-2013 Bitcoin Developers  
+Copyright (c) 2011-2013 Litecoin Developers  
+Copyright (c) 2014 BlackDragonCoin Developers  
 
 What is BlackDragonCoin?
 ------------------------
@@ -15,24 +14,28 @@ BlackDragonCoin is a lite version of Litecoin using scrypt-jane with adaptive N-
 
 Specs
 --------------------------------------------------------------------------------------------------------------------
-*Block target time:*
+**Block target time:**
  - 20 seconds before 1000th block
  - 2 minutes after 1000th block
-*Confirmations:* 6 Confirmations per transaction, 1000 confirmations for mined blocks
-*Block rewards:*
-*Block 1- 200:* 1 + 1d4
-*Block 200-50,000:* 100 + 1d20 **(20 roll is critical hit: block reward doubles and miner gets another 100 bonus coins)**
-*Block 50,000-100,000:* 50 + 1d16 **(+ 1/20 chance to get double rewards)**
-*Block 100,000-150,000:* 30 + 1d8 **(+ 1/20 chance to get double rewards)**
-*Block 150,000-200,000:* 20 + 1d6 **(+ 1/20 chance to get double rewards)**
-*Block 200,000+:* 10 + 1d4 **(+ 1/20 chance to get double rewards)**
-*DGW2* as retargeting method **(difficulty recalculating for each new block)**
-*Premine:* 1.5 % of 1 year mining period for coin development and support
+
+**Confirmations:**
+ - 6 Confirmations per transaction, 1000 confirmations for mined blocks
+
+**Block rewards:**
+ - Block 1- 200: 1 + 1d4
+ - Block 200-50,000: 100 + 1d20 *(20 roll is critical hit: block reward doubles and miner gets another 100 bonus coins)*
+ - Block 50,000-100,000: 50 + 1d16 *(+ 1/20 chance to get double rewards)*
+ - Block 100,000-150,000: 30 + 1d8 *(+ 1/20 chance to get double rewards)*
+ - Block 150,000-200,000: 20 + 1d6 *(+ 1/20 chance to get double rewards)*
+ - Block 200,000+: 10 + 1d4 *(+ 1/20 chance to get double rewards)*
+ - DGW2 as retargeting method *(difficulty recalculating for each new block)*
+ - Premine: 1.5 % of 1 year mining period for coin development and support  
+
+Random rewards delayed by one block.
 
 The rest is the same as Litecoin.
-
 For more information, as well as an immediately useable, binary version of
-the BlackDragonCoin client sofware, see http://blackdragoncoin.com
+the BlackDragonCoin client sofware, see http://forum.blackdragoncoin.com
 
 License
 -------
