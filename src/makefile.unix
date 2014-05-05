@@ -27,6 +27,7 @@ ifdef STATIC
 	ifeq (${STATIC}, all)
 		LMODE2 = static
 	endif
+	LDFLAGS+=-static-libgcc
 else
 	TESTDEFS += -DBOOST_TEST_DYN_LINK
 endif
