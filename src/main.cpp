@@ -1177,8 +1177,20 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
     if (nBlockTimeCount != 0 && nBlockTimeCount2 != 0)
 	{
 
+		const double mul1 = 0.7;
+		const double mul2 = 0.3;
+		double part1 = (double)(nBlockTimeAverage) * mul1;
+		double part2 = (double)(nBlockTimeSum2) / (double)(nBlockTimeCount2) * mul2;
+		double part3 = part1 + part2;
+		double SmartAverage = part3;
+		double Shift = nTargetSpacing / ((SmartAverage >= 1) ? SmartAverage : 1);
+
+		/* Doesn't work properly for x86-32 gcc with optimization. Move this "piece" to another file!
+		double fTargetTimespan = CountBlocks * nTargetSpacing;
+        double fActualTimespan = (double)fTargetTimespan / Shift;
         double SmartAverage = (double)nBlockTimeAverage * 0.7 + (double)nBlockTimeSum2 / (double)nBlockTimeCount2 * 0.3;
 		double Shift = nTargetSpacing / ((SmartAverage >= 1) ? SmartAverage : 1);
+		*/
 
 		double fTargetTimespan = CountBlocks * nTargetSpacing;
         double fActualTimespan = fTargetTimespan / Shift;

@@ -112,6 +112,10 @@ DEFS+=-DSCRYPT_KECCAK512 -DSCRYPT_CHACHA -DSCRYPT_CHOOSE_COMPILETIME
 xCXXFLAGS_SCRYPT_JANE=-O3 -msse2 -pthread -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter -Wunused-but-set-variable\
     $(DEBUGFLAGS) $(DEFS) $(HARDENING) $(CXXFLAGS)
 
+# Disable optimization for main.cpp as temporary solution
+xCXXFLAGS_MAIN=-pthread -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
+    $(DEBUGFLAGS) $(DEFS) $(HARDENING) $(CXXFLAGS)
+
 # LDFLAGS can be specified on the make command line, so we use xLDFLAGS that only
 # adds some defaults in front. Unfortunately, LDFLAGS=... $(LDFLAGS) does not work.
 xLDFLAGS=$(LDHARDENING) $(LDFLAGS)
@@ -189,6 +193,13 @@ obj/%-sse2.o: %-sse2.cpp
 	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
+
+obj/main.o: main.cpp
+	$(CXX) -c $(xCXXFLAGS_MAIN) -MMD -MF $(@:%.o=%.d) -o $@ $<
+	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
+          sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+              -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
+          rm -f $(@:%.o=%.d)
 
 obj/scrypt-jane.o: sj/scrypt-jane.c
 	gcc -c $(xCXXFLAGS_SCRYPT_JANE) -MMD -o $@ $<
