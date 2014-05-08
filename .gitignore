@@ -1,7 +1,7 @@
 src/*.exe
-src/litecoin
-src/litecoind
-src/test_litecoin
+src/blackdragoncoin
+src/blackdragoncoind
+src/test_blackdragoncoin
 .*.swp
 *.*~*
 *.bak
@@ -9,17 +9,18 @@ src/test_litecoin
 *.orig
 *.o
 *.patch
-.litecoin
+.blackdragoncoin
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-litecoin-qt
-Litecoin-Qt.app
+Makefile.*
+blackdragoncoin-qt
+BlackDragonCoin-Qt.app
 
 # Unit-tests
 Makefile.test
-litecoin-qt_test
+blackdragoncoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -30,5 +31,11 @@ qrc_*.cpp
 # Mac specific
 .DS_Store
 build
+
+#Win32 qt
+release
+debug
+object_script.*
+blackdragoncoin-qt_plugin_import.cpp
 
 !src/leveldb*/Makefile

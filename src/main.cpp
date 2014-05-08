@@ -1104,8 +1104,10 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
     return bnResult.GetCompact();
 }
 
+#if !defined(WIN32)
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
+#endif
 unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
     /* current difficulty formula, darkcoin - DarkGravity v2, written by Evan Duffield - evan@darkcoin.io */
@@ -1217,7 +1219,9 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
      
     return bnNew.GetCompact();
 }
+#if !defined(WIN32)
 #pragma GCC pop_options
+#endif
 
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
