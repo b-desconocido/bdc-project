@@ -315,6 +315,20 @@ string HTTPPost(const string& strMsg, const map<string,string>& mapRequestHeader
     return s.str();
 }
 
+string HTTPGet(const string& strDoc, const string &host, const map<string,string>& mapRequestHeaders)
+{
+    ostringstream s;
+    s << "GET " << strDoc << " HTTP/1.1\r\n"
+	  << "Host: " << host << "\r\n"
+	  << "Connection: close\r\n"
+	  << "Accept: text/html,application/json,*/*;q=0.8\r\n"
+      << "User-Agent: bdc-client/" << FormatFullVersion() << "\r\n";
+    BOOST_FOREACH(const PAIRTYPE(string, string)& item, mapRequestHeaders)
+        s << item.first << ": " << item.second << "\r\n";
+	s << "\r\n";
+    return s.str();
+}
+
 string rfc1123Time()
 {
     char buffer[64];
@@ -1061,6 +1075,53 @@ json_spirit::Value CRPCTable::execute(const std::string &strMethod, const json_s
     }
 }
 
+
+Object CallRPC(const string& server, const string &port, const string& strMethod, const Array& params)
+{
+    // Connect to localhost
+    asio::io_service io_service;
+    ssl::context context(io_service, ssl::context::sslv23);
+    context.set_options(ssl::context::no_sslv2);
+    asio::ssl::stream<asio::ip::tcp::socket> sslStream(io_service, context);
+    SSLIOStreamDevice<asio::ip::tcp> d(sslStream, false);
+    iostreams::stream< SSLIOStreamDevice<asio::ip::tcp> > stream(d);
+    if (!d.connect(server, port))
+        throw runtime_error("couldn't connect to server");
+
+    //map<string, string> mapRequestHeaders;
+
+    // Send request
+	string url = "http://" + server + (port.empty() ? "" :  ":" + port + "/");
+	string host = port.empty() ? server : server + ":" + port;
+    string strPost = HTTPGet(url, host, map<string, string>());
+    stream << strPost << std::flush;
+
+    // Receive HTTP reply status
+    int nProto = 0;
+    int nStatus = ReadHTTPStatus(stream, nProto);
+
+    // Receive HTTP reply message headers and body
+    map<string, string> mapHeaders;
+    string strReply;
+    ReadHTTPMessage(stream, mapHeaders, strReply, nProto);
+
+    if (nStatus == HTTP_UNAUTHORIZED)
+        throw runtime_error("incorrect rpcuser or rpcpassword (authorization failed)");
+    else if (nStatus >= 400 && nStatus != HTTP_BAD_REQUEST && nStatus != HTTP_NOT_FOUND && nStatus != HTTP_INTERNAL_SERVER_ERROR)
+        throw runtime_error(strprintf("server returned HTTP error %d", nStatus));
+    else if (strReply.empty())
+        throw runtime_error("no response from server");
+
+    // Parse reply
+    Value valReply;
+    if (!read_string(strReply, valReply))
+        throw runtime_error("couldn't parse reply from server");
+    const Object& reply = valReply.get_obj();
+    if (reply.empty())
+        throw runtime_error("expected reply to have result, error and id properties");
+
+    return reply;
+}
 
 Object CallRPC(const string& strMethod, const Array& params)
 {

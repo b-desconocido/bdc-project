@@ -44,7 +44,7 @@ BEGIN
             VALUE "FileDescription", "Black Dragon Coin GUI"
             VALUE "FileVersion", "0.1.0.0"
             VALUE "InternalName", "blackdragoncoin-qt"
-            VALUE "LegalCopyright", "2009-2013 The Bitcoin developers 2011-2013 The Black Dragon Coin developers 2014 The BlackDragonCoin developers"
+            VALUE "LegalCopyright", "2009-2013 The Bitcoin developers 2011-2013 The Litecoin developers 2014 The BlackDragonCoin developers"
             VALUE "LegalTrademarks1", "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename", "blackdragoncoin-qt.exe"
             VALUE "ProductName", "BlackDragonCoin-Qt"

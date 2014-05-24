@@ -220,6 +220,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/threadsafety.h \
     src/limitedmap.h \
     src/qt/macnotificationhandler.h \
+	src/qt/exchangespage.h \
     src/qt/splashscreen.h
 
 SOURCES += src/qt/bitcoin.cpp \
@@ -293,6 +294,7 @@ SOURCES += src/qt/bitcoin.cpp \
     src/leveldb.cpp \
     src/txdb.cpp \
     src/qt/splashscreen.cpp \
+	src/qt/exchangespage.cpp \
     src/sj/scrypt-jane.c
 
 RESOURCES += src/qt/bitcoin.qrc
@@ -308,6 +310,7 @@ FORMS += src/qt/forms/sendcoinsdialog.ui \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
+	src/qt/forms/exchangespage.ui \
     src/qt/forms/optionsdialog.ui
 
 contains(USE_QRCODE, 1) {

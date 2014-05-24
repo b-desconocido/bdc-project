@@ -90,6 +90,8 @@ void RPCTypeCheck(const json_spirit::Array& params,
 void RPCTypeCheck(const json_spirit::Object& o,
                   const std::map<std::string, json_spirit::Value_type>& typesExpected, bool fAllowNull=false);
 
+json_spirit::Object CallRPC(const std::string& host, const std::string &port, const std::string& strMethod, const json_spirit::Array& params);
+
 typedef json_spirit::Value(*rpcfn_type)(const json_spirit::Array& params, bool fHelp);
 
 class CRPCCommand

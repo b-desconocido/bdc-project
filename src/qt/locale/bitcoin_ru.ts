@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="ru">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -478,6 +480,11 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>&amp;Addresses</source>
         <translation>&amp;Адреса</translation>
     </message>
+  <message>
+    <location line="+14"/>
+    <source>&amp;Exchanges</source>
+    <translation>&amp;Обменники</translation>
+  </message>
     <message>
         <location line="+22"/>
         <source>&amp;About Black Dragon Coin</source>
@@ -542,7 +549,11 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message numerus="yes">
         <location line="+141"/>
         <source>%n active connection(s) to Black Dragon Coin network</source>
-        <translation><numerusform>%n активное соединение с сетью</numerusform><numerusform>%n активных соединений с сетью</numerusform><numerusform>%n активных соединений с сетью</numerusform></translation>
+        <translation>
+            <numerusform>%n активное соединение с сетью</numerusform>
+            <numerusform>%n активных соединений с сетью</numerusform>
+            <numerusform>%n активных соединений с сетью</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+22"/>
@@ -562,17 +573,29 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message numerus="yes">
         <location line="+20"/>
         <source>%n hour(s)</source>
-        <translation><numerusform>%n час</numerusform><numerusform>%n часа</numerusform><numerusform>%n часов</numerusform></translation>
+        <translation>
+            <numerusform>%n час</numerusform>
+            <numerusform>%n часа</numerusform>
+            <numerusform>%n часов</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location line="+4"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n день</numerusform><numerusform>%n дня</numerusform><numerusform>%n дней</numerusform></translation>
+        <translation>
+            <numerusform>%n день</numerusform>
+            <numerusform>%n дня</numerusform>
+            <numerusform>%n дней</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location line="+4"/>
         <source>%n week(s)</source>
-        <translation><numerusform>%n неделя</numerusform><numerusform>%n недели</numerusform><numerusform>%n недель</numerusform></translation>
+        <translation>
+            <numerusform>%n неделя</numerusform>
+            <numerusform>%n недели</numerusform>
+            <numerusform>%n недель</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+4"/>
@@ -750,6 +773,34 @@ Address: %4
         <source>New key generation failed.</source>
         <translation>Генерация нового ключа не удалась.</translation>
     </message>
+</context>
+<context>
+    <name>ExchangesPage</name>
+    <message>
+        <location filename="../forms/exchangespage.ui" line="+14"/>
+        <source>Exchanges</source>
+        <translation>Обменники</translation>
+    </message>
+    <message>
+        <location filename="../forms/exchangespage.ui" line="+57"/>
+        <source>Name:</source>
+        <translation>Имя:</translation>
+    </message>
+    <message>
+        <location filename="../forms/exchangespage.ui" line="+100"/>
+        <source>Sell:</source>
+        <translation>Продать:</translation>
+    </message>
+    <message>
+        <location filename="../forms/exchangespage.ui" line="+80"/>
+        <source>Buy:</source>
+        <translation>Купить:</translation>
+    </message>
+  <message>
+    <location filename="../forms/exchangespage.ui" line="+28"/>
+    <source>Refresh</source>
+    <translation>Обновить</translation>
+  </message>
 </context>
 <context>
     <name>GUIUtil::HelpMessageBox</name>
@@ -1652,11 +1703,11 @@ Address: %4
         <source>The Black Dragon Coin developers</source>
         <translation>Разработчики Black Dragon Coin</translation>
     </message>
-  <message>
-    <location filename="../splashscreen.cpp" line="+22"/>
-    <source>The Litecoin developers</source>
-    <translation>Разработчики Litecoin</translation>
-  </message>
+    <message>
+        <location line="+22"/>
+        <source>The Litecoin developers</source>
+        <translation>Разработчики Litecoin</translation>
+    </message>
     <message>
         <location line="+1"/>
         <source>[testnet]</source>
@@ -1693,7 +1744,11 @@ Address: %4
     <message numerus="yes">
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, разослано через %n узел</numerusform><numerusform>, разослано через %n узла</numerusform><numerusform>, разослано через %n узлов</numerusform></translation>
+        <translation>
+            <numerusform>, разослано через %n узел</numerusform>
+            <numerusform>, разослано через %n узла</numerusform>
+            <numerusform>, разослано через %n узлов</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1746,7 +1801,11 @@ Address: %4
     <message numerus="yes">
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>будет доступно через %n блок</numerusform><numerusform>будет доступно через %n блока</numerusform><numerusform>будет доступно через %n блоков</numerusform></translation>
+        <translation>
+            <numerusform>будет доступно через %n блок</numerusform>
+            <numerusform>будет доступно через %n блока</numerusform>
+            <numerusform>будет доступно через %n блоков</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1829,7 +1888,11 @@ Address: %4
     <message numerus="yes">
         <location line="-35"/>
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Открыто для ещё %n блока</numerusform><numerusform>Открыто для ещё %n блоков</numerusform><numerusform>Открыто для ещё %n блоков</numerusform></translation>
+        <translation>
+            <numerusform>Открыто для ещё %n блока</numerusform>
+            <numerusform>Открыто для ещё %n блоков</numerusform>
+            <numerusform>Открыто для ещё %n блоков</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+70"/>
@@ -1875,7 +1938,11 @@ Address: %4
     <message numerus="yes">
         <location line="+57"/>
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Открыто для ещё %n блока</numerusform><numerusform>Открыто для ещё %n блоков</numerusform><numerusform>Открыто для ещё %n блоков</numerusform></translation>
+        <translation>
+            <numerusform>Открыто для ещё %n блока</numerusform>
+            <numerusform>Открыто для ещё %n блоков</numerusform>
+            <numerusform>Открыто для ещё %n блоков</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1900,7 +1967,11 @@ Address: %4
     <message numerus="yes">
         <location line="+8"/>
         <source>Mined balance will be available when it matures in %n more block(s)</source>
-        <translation><numerusform>Добытыми монетами можно будет воспользоваться через %n блок</numerusform><numerusform>Добытыми монетами можно будет воспользоваться через %n блока</numerusform><numerusform>Добытыми монетами можно будет воспользоваться через %n блоков</numerusform></translation>
+        <translation>
+            <numerusform>Добытыми монетами можно будет воспользоваться через %n блок</numerusform>
+            <numerusform>Добытыми монетами можно будет воспользоваться через %n блока</numerusform>
+            <numerusform>Добытыми монетами можно будет воспользоваться через %n блоков</numerusform>
+        </translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1937,11 +2008,11 @@ Address: %4
         <source>Mined</source>
         <translation>Добыто</translation>
     </message>
-  <message>
-    <location line="+2"/>
-    <source>Rolled</source>
-    <translation>Бонус</translation>
-  </message>
+    <message>
+        <location line="+2"/>
+        <source>Rolled</source>
+        <translation>Бонус</translation>
+    </message>
     <message>
         <location line="+38"/>
         <source>(n/a)</source>
@@ -2031,7 +2102,7 @@ Address: %4
         <source>Mined</source>
         <translation>Добытые</translation>
     </message>
-	<message>
+    <message>
         <location line="+1"/>
         <source>Rolled</source>
         <translation>Бонус</translation>
