@@ -3,7 +3,11 @@
 #include "sync.h"
 #include "bitcoinrpc.h"
 #include <QFuture>
+#if QT_VERSION >= 0x040800
 #include <QtConcurrent/QtConcurrentRun>
+#else
+#include <QtConcurrentRun>
+#endif
 #include <boost/foreach.hpp>
 #include <boost/format.hpp>
 
