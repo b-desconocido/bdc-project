@@ -210,12 +210,19 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
-	ExchangesAction = new QAction(QIcon(":/icons/exchange"), tr("&Exchanges"), this);
-    ExchangesAction->setStatusTip(tr("View exchanges information"));
-    ExchangesAction->setToolTip(ExchangesAction->statusTip());
-    ExchangesAction->setCheckable(true);
-    ExchangesAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
-    tabGroup->addAction(ExchangesAction);
+	exchangesAction = new QAction(QIcon(":/icons/exchange"), tr("&Exchanges"), this);
+    exchangesAction->setStatusTip(tr("View exchanges information"));
+    exchangesAction->setToolTip(exchangesAction->statusTip());
+    exchangesAction->setCheckable(true);
+    exchangesAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+    tabGroup->addAction(exchangesAction);
+
+	usefulLinksAction = new QAction(QIcon(":/icons/people"), tr("&Socials"), this);
+    usefulLinksAction->setStatusTip(tr("View usefull links"));
+    usefulLinksAction->setToolTip(usefulLinksAction->statusTip());
+    usefulLinksAction->setCheckable(true);
+    usefulLinksAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+    tabGroup->addAction(usefulLinksAction);
 
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
@@ -227,8 +234,10 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
-	connect(ExchangesAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-	connect(ExchangesAction, SIGNAL(triggered()), this, SLOT(gotoExchangesTab()));
+	connect(exchangesAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+	connect(exchangesAction, SIGNAL(triggered()), this, SLOT(gotoExchangesTab()));
+	connect(usefulLinksAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+	connect(usefulLinksAction, SIGNAL(triggered()), this, SLOT(gotoUselfulLinksTab()));
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
     quitAction->setStatusTip(tr("Quit application"));
@@ -313,7 +322,8 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
-	toolbar->addAction(ExchangesAction);
+	toolbar->addAction(exchangesAction);
+	toolbar->addAction(usefulLinksAction);
 }
 
 void BitcoinGUI::setClientModel(ClientModel *clientModel)
@@ -390,6 +400,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     signMessageAction->setEnabled(enabled);
     verifyMessageAction->setEnabled(enabled);
     addressBookAction->setEnabled(enabled);
+	exchangesAction->setEnabled(enabled);
+	usefulLinksAction->setEnabled(enabled);
 }
 
 void BitcoinGUI::createTrayIcon()
@@ -509,6 +521,11 @@ void BitcoinGUI::gotoAddressBookPage()
 void BitcoinGUI::gotoExchangesTab()
 {
 	if (walletFrame) walletFrame->gotoExchangesTab();
+}
+
+void BitcoinGUI::gotoUselfulLinksTab()
+{
+	if (walletFrame) walletFrame->gotoUsefulLinksTab();
 }
 
 void BitcoinGUI::gotoReceiveCoinsPage()

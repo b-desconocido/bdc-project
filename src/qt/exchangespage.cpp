@@ -41,10 +41,22 @@ void ExchangesPage::changeTicker(const QString & text)
 		{
 			TickerEntry item = (*it).second;
 			ui->lblUrl->setText(QString(("<a href=\"" + item.Url + "\">" + item.Name.c_str() + "</a>").c_str()));
-			ui->lblSellPrice->setText(QString(item.SellPrice.c_str()));
-			ui->lblBuyPrice->setText(QString(item.BuyPrice.c_str()));
+			ui->lblSellPrice->setText(QString((item.SellPrice + " BTC").c_str()));
+			ui->lblBuyPrice->setText(QString((item.BuyPrice + " BTC").c_str()));
+			ui->lblLast->setText(QString((item.LastPrice + " BTC").c_str()));
+			ui->lblHigh->setText(QString((item.HighPrice + " BTC").c_str()));
+			ui->lblLow->setText(QString((item.LowPrice + " BTC").c_str()));
+			ui->lbl24HVolume->setText(QString(item.H24Volume.c_str()));
 		}
 	}
+}
+
+string ParsePrice(const map<string, Config_vector<string>::Value_type>& entries, const string& name)
+{
+	map<string, Config_vector<string>::Value_type>::const_iterator it = entries.find(name);
+	if (it != entries.end() && !(*it).second.is_null())
+		return str(format("%.8f") % (*it).second.get_real());
+	else return string("0.00");
 }
 
 void ExchangesPage::Refresh()
@@ -55,6 +67,7 @@ void ExchangesPage::Refresh()
 		Object result = CallRPC("tools.blackdragoncoin.com", "81", "simpleTicker", Array());
 
 		QString selectedItem = ui->cbCurrentExchange->currentText();
+		string prevVolume, best;
 		{
 			LOCK(cs_tickers);
 			BOOST_FOREACH (const Config_vector<std::string>::Pair_type &obj, result)
@@ -65,15 +78,30 @@ void ExchangesPage::Refresh()
 				obj_to_map(obj.value_.get_obj(), mapParsedTickers);
 				obj_to_map(mapParsedTickers["Result"].get_obj(), mapParsedResults);
 
-				// Assign
+				// For debug purposes
 				string Name = mapParsedResults["Name"].get_str();
 				string Url = mapParsedResults["Url"].get_str();
-				string SellPrice = str(format("%.8f") % mapParsedResults["SellPrice"].get_real());
-				string BuyPrice = str(format("%.8f") % mapParsedResults["BuyPrice"].get_real());
-				mapTickers[Name] = TickerEntry(Name, Url, SellPrice, BuyPrice);
+				string SellPrice = ParsePrice(mapParsedResults, "SellPrice");
+				string BuyPrice = ParsePrice(mapParsedResults, "BuyPrice");
+
+				string Last = ParsePrice(mapParsedResults, "Last");
+				string High = ParsePrice(mapParsedResults, "High");
+				string Low = ParsePrice(mapParsedResults, "Low");
+				string H24Vol = ParsePrice(mapParsedResults, "H24VolumeBDC") + " BDC / " + ParsePrice(mapParsedResults, "H24VolumeBTC") + " BTC";
+
+				if (prevVolume < H24Vol)
+				{
+					prevVolume = H24Vol;
+					best = Name;
+				}
+
+				mapTickers[Name] = TickerEntry(Name, Url, SellPrice, BuyPrice, Last, High, Low, H24Vol);
 			}
+
 			if (selectedItem.isEmpty() && !mapTickers.empty())
-				selectedItem = QString((*mapTickers.begin()).first.c_str());
+			{
+				selectedItem = QString( best.empty() ? (*mapTickers.begin()).first.c_str() : best.c_str());
+			}
 		}
 
 		// Update combo box

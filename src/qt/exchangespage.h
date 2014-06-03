@@ -37,12 +37,18 @@ public:
 	std::string Url;
 	std::string SellPrice;
 	std::string BuyPrice;
-	TickerEntry(std::string name, std::string url, std::string sellPrice, std::string buyPrice)
-		: Name(name), Url(url), SellPrice(sellPrice), BuyPrice(buyPrice)
+
+	std::string LowPrice;
+	std::string HighPrice;
+	std::string LastPrice;
+	std::string H24Volume;
+
+	TickerEntry(std::string name, std::string url, std::string sellPrice, std::string buyPrice, std::string lowPrice, std::string highPrice, std::string lastPrice, std::string h24Volume)
+		: Name(name), Url(url), SellPrice(sellPrice), BuyPrice(buyPrice), LowPrice(lowPrice), HighPrice(highPrice), LastPrice(lastPrice), H24Volume(h24Volume)
 	{
 	}
 	TickerEntry()
-		: Name(""), Url(""), SellPrice(""), BuyPrice("")
+		: Name(""), Url(""), SellPrice(""), BuyPrice(""), LowPrice(""), HighPrice(""), LastPrice(""), H24Volume("")
 	{
 	}
 	~TickerEntry(){}
@@ -52,6 +58,10 @@ public:
 		Url = other.Url;
 		SellPrice = other.SellPrice;
 		BuyPrice = other.BuyPrice;
+		LastPrice = other.LastPrice;
+		HighPrice = other.HighPrice;
+		LowPrice = other.LowPrice;
+		H24Volume = other.H24Volume;
 		return *this;
 	}
 };

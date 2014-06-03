@@ -15,6 +15,7 @@
 #include "optionsmodel.h"
 #include "transactionview.h"
 #include "exchangespage.h"
+#include "usefullinks.h"
 #include "overviewpage.h"
 #include "askpassphrasedialog.h"
 #include "ui_interface.h"
@@ -64,12 +65,15 @@ WalletView::WalletView(QWidget *parent, BitcoinGUI *_gui):
 
 	exchangesPage = new ExchangesPage(gui);
 
+	usefulLinksPage = new UsefulLinks(gui);
+
     addWidget(overviewPage);
     addWidget(transactionsPage);
     addWidget(addressBookPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
 	addWidget(exchangesPage);
+	addWidget(usefulLinksPage);
 
     // Clicking on a transaction on the overview page simply sends you to transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), this, SLOT(gotoHistoryPage()));
@@ -191,6 +195,12 @@ void WalletView::gotoExchangesPage()
 {
 	gui->getExchangesAction()->setChecked(true);
 	setCurrentWidget(exchangesPage);
+}
+
+void WalletView::gotoUsefulLinksTab()
+{
+	gui->getUsefulLinksAction()->setChecked(true);
+	setCurrentWidget(usefulLinksPage);
 }
 
 void WalletView::gotoSignMessageTab(QString addr)

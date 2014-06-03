@@ -67,7 +67,8 @@ public:
     QAction * getAddressBookAction() { return addressBookAction; }
     QAction * getReceiveCoinsAction() { return receiveCoinsAction; }
     QAction * getSendCoinsAction() { return sendCoinsAction; }
-	QAction * getExchangesAction() { return ExchangesAction; }
+	QAction * getExchangesAction() { return exchangesAction; }
+	QAction * getUsefulLinksAction() { return usefulLinksAction; }
 
 protected:
     void changeEvent(QEvent *e);
@@ -88,7 +89,8 @@ private:
 
     QMenuBar *appMenuBar;
     QAction *overviewAction;
-	QAction *ExchangesAction;
+	QAction *exchangesAction;
+	QAction *usefulLinksAction;
     QAction *historyAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
@@ -177,6 +179,8 @@ private slots:
     void gotoSendCoinsPage(QString addr = "");
 	/** Switch to tickers tab */
 	void gotoExchangesTab();
+	/** Switch to spcials tab */
+	void gotoUselfulLinksTab();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");

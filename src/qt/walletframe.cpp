@@ -93,6 +93,11 @@ void WalletFrame::gotoExchangesTab()
 	walletStack->gotoExchangesTab();
 }
 
+void WalletFrame::gotoUsefulLinksTab()
+{
+	walletStack->gotoUsefulLinksTab();
+}
+
 void WalletFrame::gotoAddressBookPage()
 {
     WalletView *walletView = currentWalletView();

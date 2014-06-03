@@ -80,6 +80,8 @@ public slots:
     void gotoSendCoinsPage(QString addr = "");
 	/** Switch to ticker tab */
 	void gotoExchangesTab();
+	/** Switch to socials tab */
+	void gotoUsefulLinksTab();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");

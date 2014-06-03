@@ -54,6 +54,8 @@ public slots:
     void gotoSendCoinsPage(QString addr = "");
 	/** Swtich to ticker page */
 	void gotoExchangesTab();
+	/** Swtich to socials page */
+	void gotoUsefulLinksTab();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
