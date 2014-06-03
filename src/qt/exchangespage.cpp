@@ -3,7 +3,7 @@
 #include "sync.h"
 #include "bitcoinrpc.h"
 #include <QFuture>
-#if QT_VERSION >= 0x040800
+#if QT_VERSION >= 0x050000
 #include <QtConcurrent/QtConcurrentRun>
 #else
 #include <QtConcurrentRun>
