@@ -30,6 +30,7 @@ public:
         DisplayAddresses,  // bool
         Language,          // QString
         CoinControlFeatures, // bool
+		LogoId,              // int
         OptionIDRowCount,
     };
 
@@ -48,12 +49,14 @@ public:
     bool getMinimizeToTray() { return fMinimizeToTray; }
     bool getMinimizeOnClose() { return fMinimizeOnClose; }
     int getDisplayUnit() { return nDisplayUnit; }
+	int getLogoId() { return nLogoId; }
     bool getDisplayAddresses() { return bDisplayAddresses; }
     QString getLanguage() { return language; }
     bool getCoinControlFeatures();
 
 private:
     int nDisplayUnit;
+	int nLogoId;
     bool bDisplayAddresses;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
@@ -62,6 +65,7 @@ private:
 
 signals:
     void displayUnitChanged(int unit);
+	void logoIdChanged(int id);
     void transactionFeeChanged(qint64);
     void coinControlFeaturesChanged(bool);
 };

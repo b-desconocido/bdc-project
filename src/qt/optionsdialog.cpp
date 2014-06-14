@@ -36,6 +36,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->socksVersion->addItem("4", 4);
     ui->socksVersion->setCurrentIndex(0);
 
+	ui->logo->addItem("primary", 0);
+	ui->logo->addItem("alternative", 1);
+	ui->logo->setCurrentIndex(0);
+
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->proxyIp, SLOT(setEnabled(bool)));
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->proxyPort, SLOT(setEnabled(bool)));
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->socksVersion, SLOT(setEnabled(bool)));
@@ -144,6 +148,7 @@ void OptionsDialog::setMapper()
 
     /* Display */
     mapper->addMapping(ui->lang, OptionsModel::Language);
+	mapper->addMapping(ui->logo, OptionsModel::LogoId);
     mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
     mapper->addMapping(ui->displayAddresses, OptionsModel::DisplayAddresses);
     mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);

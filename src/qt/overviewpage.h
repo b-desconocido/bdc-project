@@ -59,6 +59,7 @@ private:
 
 private slots:
     void updateDisplayUnit();
+	void updateLogo();
     void handleTransactionClicked(const QModelIndex &index);
     void updateAlerts(const QString &warnings);
 };

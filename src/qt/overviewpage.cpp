@@ -100,10 +100,12 @@ void OverviewPage::setWalletModel(WalletModel *model)
         connect(model, SIGNAL(balanceChanged(qint64, qint64, qint64)), this, SLOT(setBalance(qint64, qint64, qint64)));
 
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+		connect(model->getOptionsModel(), SIGNAL(logoIdChanged(int)), this, SLOT(updateLogo()));
     }
 
     // update the display unit, to not use the default ("BDC")
     updateDisplayUnit();
+	updateLogo();
 }
 
 void OverviewPage::updateDisplayUnit()
@@ -117,6 +119,26 @@ void OverviewPage::updateDisplayUnit()
         txdelegate->unit = walletModel->getOptionsModel()->getDisplayUnit();
 
         ui->listTransactions->update();
+    }
+}
+
+QString GetLogoName(int nLogo)
+{
+	switch (nLogo)
+	{
+	case 1:
+		return QString(":/images/wallet_logo_alt");
+	default:
+		return QString(":/images/wallet_logo");
+	}
+}
+
+void OverviewPage::updateLogo()
+{
+    if (walletModel && walletModel->getOptionsModel())
+    {
+		int nLogo = walletModel->getOptionsModel()->getLogoId();
+		ui->lblWalletLogo->setPixmap(QPixmap(GetLogoName(nLogo)));
     }
 }
 

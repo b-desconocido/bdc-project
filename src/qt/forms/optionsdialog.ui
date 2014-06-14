@@ -350,7 +350,31 @@
             <string>Choose the default subdivision unit to show in the interface and when sending coins.</string>
            </property>
           </widget>
+         </item>  
+        </layout>
+       </item>
+        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3_Display">
+         <item>
+          <widget class="QLabel" name="logoLabel">
+           <property name="text">
+            <string>Logo:</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+           <property name="buddy">
+            <cstring>logo</cstring>
+           </property>
+          </widget>
          </item>
+         <item>
+          <widget class="QValueComboBox" name="logo">
+           <property name="toolTip">
+            <string>Choose the logo.</string>
+           </property>
+          </widget>
+         </item> 
         </layout>
        </item>
        <item>

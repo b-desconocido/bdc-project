@@ -994,6 +994,16 @@ Address: %4
         <translation>Выберите единицу измерения монет при отображении и отправке.</translation>
     </message>
     <message>
+        <location line="+13"/>
+        <source>Choose the logo.</source>
+        <translation>Выберите логотип.</translation>
+    </message>
+    <message>
+      <location line="+13"/>
+      <source>Logo:</source>
+      <translation>Логотип:</translation>
+    </message>
+    <message>
         <location line="+9"/>
         <source>Whether to show Black Dragon Coin addresses in the transaction list or not.</source>
         <translation>Показывать ли адреса Black Dragon Coin в списке транзакций.</translation>
